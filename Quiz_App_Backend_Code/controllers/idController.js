@@ -15,8 +15,16 @@ class idController {
             const newVal = new idModel({ id: "autoval", count: 1 });
             newVal.save();
             seqId = 1;
+            // res.send({
+            //   status: "succes",
+            //   message: "Added first Id successfully",
+            // });
           } else {
             seqId = cd.count;
+            // res.send({
+            //   status: "succes",
+            //   message: "Added second Id successfully",
+            // });
           }
 
           let quizId = seqId;
@@ -35,7 +43,7 @@ class idController {
             const response = await axios.post('http://localhost:8000/api/quiz/addQuiz', doc);
             console.log("Below Data Is from counter Table");
             console.log(response.data);
-            if(response.data.status == "success")
+            if(response.message == "successfully Added Quiz")
             {
               res.status(201).send({
                 status: "success",
