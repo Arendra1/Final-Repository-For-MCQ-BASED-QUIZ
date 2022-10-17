@@ -1,6 +1,5 @@
 <template>
     <div class="outermost h-screen bg-black">
-        <!-- <h1 class="font-sans text-2xl text-white font-bold flex justify-center pt-2">Add a new Quiz</h1> -->
 
         <div class="z-10 h-76 w-full p-10 border-2 flex border-[#f3f7f7] top-4 text-white  bg-[#131417]" id="profile">
             <div
@@ -55,7 +54,7 @@
                     </button>
                     <button @click="goBack()"
                         class="btn h-10 w-32 mt-4 font-bold  border-2 border-green-500 flex justify-center items-center text-green-500  rounded-sm hover:border-yellow-500 hover:text-yellow-500 ">
-                         Go Back
+                        Go Back
                     </button>
                 </div>
             </div>
@@ -69,6 +68,7 @@
 <script>
 import Vue from 'vue';
 import axios from 'axios';
+import Config from '../config.js';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 Vue.use(VueToast);
@@ -124,33 +124,35 @@ export default {
                 const quizName = localStorage.getItem('quizName');
                 let bodyObj = { quizName };
 
-                const result = await axios.post('http://localhost:8000/api/quiz/getQuizByName', bodyObj);
-                console.log(result);
+                const result = await axios.post(`${Config.base_url}/quiz/getQuizByName`, bodyObj);
+                console.log(result.data.quiz);
+                console.log(result.data.quiz.questions);
+                let questions = result.data.quiz.questions;
 
-                        //   const response = await axios.post('http://localhost:8000/api/id/addId',doc);
-                        //   console.log( "Response from AddId ",response);
-                        //   if(response.message == "Quiz Added Successfully")
-                        //   {
-                        //     Vue.$toast.open('Question Added Successfully');
+                let _id = result.data.quiz._id;
+                questions.push(doc);
 
-                        //   }
-                        //   else{
-
-                        //     Vue.$toast.open('Quiz already Exists');
-                        //   }
-
-                    }
-                    else {
-
-                        Vue.$toast.open('ALL fields are required');
-                    }
+                let newDoc = {
+                    _id ,
+                    questions
+                }
+                console.log("Just before update quiz post request");
+                const response  = await axios.post(`${Config.base_url}/quiz/addQuestion` , newDoc);
+                console.log(response.data);
+                Vue.$toast.open(response.data.message);
 
             }
+            else {
 
+                Vue.$toast.open('ALL fields are required');
+            }
 
         }
 
+
     }
+
+}
 </script>
     
 <style>

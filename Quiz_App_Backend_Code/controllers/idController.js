@@ -40,7 +40,7 @@ class idController {
 
 
           try{
-            const response = await axios.post('http://localhost:8000/api/quiz/addQuiz', doc);
+            const response = await axios.post('https://mevn-quiz-application-fynd.herokuapp.com/api/quiz/addQuiz', doc);
             console.log("Below Data Is from counter Table");
             console.log(response.data);
             if(response.message == "successfully Added Quiz")
