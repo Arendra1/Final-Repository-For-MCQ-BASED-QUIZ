@@ -1,40 +1,40 @@
 <template>
     <div class="">
-        <div class="main h-fit bg-[#131417] py-20 px-60 overflow-hidden">
-            <h1 class="mx-96 font-bold text-green-600 text-3xl font-sans mb-4">Quiz<span
+        <div class="main h-screen bg-[#131417] py-10 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:overflow-scroll">
+            <h1 class="mx-80 font-bold text-green-600 text-3xl font-sans mb-4 md:mx-96  lg:ml-[48vw] ">Quiz<span
                     class="text-yellow-500">Mania</span>
             </h1>
-            <div
-                class="outerdiv bg-white mt-4 p-4 mx-60 space-y-8 w-1/2 h-auto flex flex-col justify-center items-center rounded-sm">
-                <div class="heading font-bold  text-2xl font-mono">Sign Up</div>
+            <div 
+                class="outerdiv bg-white mt-4  mx-60 space-y-8 w-[80vw] h-auto flex flex-col justify-center items-center rounded-sm md:w-[70vw] md:ml-40 lg:ml-48 xl:ml-60 2xl:ml-80">
+                <div class="heading font-bold mt-2 text-2xl font-mono md:mt-4">Sign Up</div>
                 <div class="form flex flex-col space-y-8">
                     <input
-                        class="h-12 w-96 px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="text" v-model="name" placeholder="Enter your name">
                     <input
-                        class="h-12 w-96 px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="email" v-model="email" placeholder="Enter your email">
                     <select v-model="accessLevel"
-                        class="h-12 w-96 px-10  rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer">
+                        class="h-12 w-64  px-10  rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]">
                         <option value="Select Access Level" disabled selected>Select Access Level</option>
                         <option value="Teacher">Teacher</option>
                         <option value="Student">Student</option>
                     </select>
                     <select v-model="domain"
-                        class="h-12 w-96 px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer">
+                        class="h-12 w-64  px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]">
                         <option value="Select Access Level" disabled selected>Select domain</option>
                         <option value="Aptitude">Aptitude</option>
                         <option value="DSA">DSA</option>
                         <option value="Programming">Programming</option>
                     </select>
-                    <input class="h-12 w-96 px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7]" type="password"
+                    <input class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] md:w-[60vw]" type="password"
                         v-model="password" placeholder="Your password">
-                    <input class="h-12 w-96 px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7]" type="password"
+                    <input class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] md:w-[60vw]" type="password"
                         v-model="password_confirmation" placeholder="Confirm password">
                 </div>
                 <div class="button">
                     <button @click="register()"
-                        class="btn  bg-[#1ba94c] text-white font-bold w-20 h-10 rounded-sm hover:bg-green-700">
+                        class="btn  bg-[#1ba94c] text-white font-bold w-20 h-10 rounded-sm hover:bg-green-700 md:w-24">
                         <router-link to="/" exact>Sign Up</router-link>
                     </button>
                 </div>

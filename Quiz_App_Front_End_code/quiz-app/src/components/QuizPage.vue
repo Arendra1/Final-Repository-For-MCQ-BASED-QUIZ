@@ -7,8 +7,8 @@
         <p v-if="success" >{{currentQuiz()}}</p>
         <p v-else ></p>
         <div class="w-full max-w-xl">
-            <h1 class="font-bold text-5xl text-center text-indigo-700">Attemp Quiz</h1>
-            <div class="bg-white p-12 rounded-lg shadow-lg w-full mt-8">
+            <h1 class="font-bold text-5xl text-center text-green-500">Attemp <span class="text-yellow-500">Quiz</span> </h1>
+            <div class="bg-[#131417] border-2 text-white border-white p-12 rounded-lg shadow-lg w-full mt-8">
                 <div v-if="index < count">
                     <p class="text-2xl font-bold">
                         {{questions[index]['question']}}
@@ -16,8 +16,8 @@
 
                      <label :for="key" class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg"
                         v-for="answer , key in questions[index]['answers']" :key="key" :class="{'hover:bg-gray-100 cursor-pointer' :  selectedAnswer == ''  } &&
-                     {'bg-red-200': selectedAnswer == key} &&
-                     {'bg-green-200' : key == questions[index]['correctAnswer'] && selectedAnswer != ''}">
+                     {'bg-red-400': selectedAnswer == key} &&
+                     {'bg-green-500' : key == questions[index]['correctAnswer'] && selectedAnswer != ''}">
                         <input type="radio" :id="key" class="hidden" :value="key" @change="answered($event)"
                             :disabled=" selectedAnswer != '' ">
                         {{answer}}
@@ -116,6 +116,7 @@ export default {
 
         async currentQuiz()
         {
+            this.success = false;
             setTimeout(async()=>{
 
             console.log('Current Quiz Function has called');
@@ -147,11 +148,6 @@ export default {
                 console.log('Quiz Does not Exists');
             }
 
-            this.success = false;
-
-
-
-
             },400)
 
         },
@@ -165,8 +161,6 @@ export default {
 
 
         answered(e){ 
-            // console.log(e);
-            // console.log(e.target.value);
             this.selectedAnswer = e.target.value;
             if(this.selectedAnswer == this.questions[this.index]['correctAnswer'])
             {
@@ -175,8 +169,6 @@ export default {
             else{
                 this.wrongAnswer++;
             }
-            // console.log(this.questions[this.index]['correctAnswer']);
-            // console.log(this.correctAnswer + " " + this.wrongAnswer);
         },
         nextQuestion(){
             this.index++;

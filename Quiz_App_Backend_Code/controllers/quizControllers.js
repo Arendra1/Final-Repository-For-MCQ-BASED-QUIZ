@@ -73,17 +73,23 @@ class quizController {
     const { quizName } = req.body;
 
     if (quizName) {
-      const result = await quizModel.findOne({ quizName: quizName });
+        await quizModel.find({ quizName: quizName } , (err , result)=>{
+        if(err)
+        {
+          console.log(err);
+          res.send({ status: "failed", message: "Can't fetch quiz", err});
 
-      if (result) {
-        console.log(result);
-        res.send({ status: "success", message: "fetched the quiz", quiz: result });
-      } else {
-        res.send({ status: "failed", message: "Can't fetch quiz", quiz:null });
-      }
+        }
+        else{
+          console.log(docs);
+          res.send({ status: "success", message: "fetched the quiz", result });
+
+        }
+      });
+
     }
     else{
-      res.send({ status: "failed", message: "All Fields required", quiz: null });
+      res.send({ status: "failed", message: "All Fields required"});
       
     }
   };
@@ -116,26 +122,37 @@ class quizController {
 
 
 
-  // ADD Question
-  static addQuestion = async (req , res) =>{
-
+   // NEW ADD QUESTION
+   static addQuestion = async (req , res) =>{
+    console.log("Add Question function called");
+    const { _id , questions} = req.body;
     try{
-    const { _id , question} = req.body;
 
     console.log(_id);
-    console.log(question);
+    console.log(questions);
 
-    const response = await quizModel.findByIdAndUpdate(_id, {$set:{questions : {"1" : question }}});
+     await quizModel.findByIdAndUpdate(_id, {questions : questions} , (err , docs)=>{
+      if(err)
+      {
+        console.log(err);
+        res.send({
+          status: "failed",
+          message: "Question not added"
+        });
+      }
+      else{
+        console.log(docs);
+        res.send({
+          status: "success",
+          message: "Question added successfully"
+        });
+      }
+    })
 
-    console.log(response);
-
-    res.send({status:"success" , message:"Quiz updated successfully"});
-
-    res.send
     }catch(err)
     {
       console.log(err);
-      res.send({status:"Failed" , message:"Quiz not updated"});
+      res.send({status:"failed" , message:"Quiz not updated" , _id , questions , error : err.name , mess: err.message});
     }
 
   }

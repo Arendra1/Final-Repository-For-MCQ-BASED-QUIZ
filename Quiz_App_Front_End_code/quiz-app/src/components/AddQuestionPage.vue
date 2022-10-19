@@ -1,45 +1,45 @@
 <template>
     <div class="outermost h-screen bg-black">
 
-        <div class="z-10 h-76 w-full p-10 border-2 flex border-[#f3f7f7] top-4 text-white  bg-[#131417]" id="profile">
+        <div class="main h-[120vh] bg-[#131417]  pt-10 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:h-[130vh] xl:overflow-scroll" id="profile">
             <div
-                class="form flex flex-col w-fit border-2 border-green-300 justify-center items-center space-y-8 p-6 ml-[30vw] ">
+                class="outerdiv bg-[#131417] text-white mt-4  mx-60 space-y-8 w-[80vw] h-auto flex flex-col justify-center items-center rounded-sm md:w-[70vw] md:ml-40 md:border-2 md:border-white md:p-8 lg:ml-48  xl:ml-60 2xl:ml-80  ">
                 <h1 class="font-bold font-mono text-2xl text-green-500">ADD NEW<span class=" text-yellow-500">
                         QUESTION</span>
                 </h1>
                 <div class="flex flex-col space-y-2">
                     <label class="font-bold font-mono text-md" for="">Question</label>
                     <input
-                        class="h-12 w-96 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="text" v-model="question">
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label class="font-bold font-mono text-md" for="">Option 1</label>
                     <input
-                        class="h-12 w-96 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="text" v-model="a">
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label class="font-bold font-mono text-md" for="">Option 2</label>
                     <input
-                        class="h-12 w-96 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="text" v-model="b">
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label class="font-bold font-mono text-md" for="">Option 3</label>
                     <input
-                        class="h-12 w-96 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="text" v-model="c">
                 </div>
                 <div class="flex flex-col space-y-2">
                     <label class="font-bold font-mono text-md" for="">Option 4</label>
                     <input
-                        class="h-12 w-96 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+                        class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
                         type="text" v-model="d">
                 </div>
                 <div class="flex flex-col space-y-2"><label class="font-bold font-mono text-md" for="">Answer </label>
                     <select v-model="answer"
-                        class="h-12 w-96 px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer">
+                        class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]">
                         <option value="Select Answer" disabled selected>Select Answer</option>
                         <option value="a">a</option>
                         <option value="b">b</option>
@@ -124,19 +124,22 @@ export default {
                 const quizName = localStorage.getItem('quizName');
                 let bodyObj = { quizName };
 
+                console.log("Just before  getQuizByName api call");
                 const result = await axios.post(`${Config.base_url}/quiz/getQuizByName`, bodyObj);
+                console.log(result);
                 console.log(result.data.quiz);
                 console.log(result.data.quiz.questions);
                 let questions = result.data.quiz.questions;
 
                 let _id = result.data.quiz._id;
                 questions.push(doc);
+                console.log("** Questions we are sending in body to addQUestion api call** : ",questions);
 
                 let newDoc = {
                     _id ,
-                    questions
+                    question,
                 }
-                console.log("Just before update quiz post request");
+                console.log("Just before add question api call");
                 const response  = await axios.post(`${Config.base_url}/quiz/addQuestion` , newDoc);
                 console.log(response.data);
                 Vue.$toast.open(response.data.message);

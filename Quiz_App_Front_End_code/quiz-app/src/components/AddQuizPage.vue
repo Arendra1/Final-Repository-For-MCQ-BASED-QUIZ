@@ -1,19 +1,19 @@
 <template>
-  <div class="outermost h-screen bg-black">
+  <div class="outermost h-screen bg-[#131417]">
 
-    <div class="z-10 h-76 w-full p-10 border-2 flex border-[#f3f7f7] top-4 text-white  bg-[#131417]" id="profile">
+    <div class="main h-[120vh] bg-[#131417]  pt-32 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:h-[130vh] xl:overflow-scroll" id="profile">
       <div
-        class="form flex flex-col w-fit border-2 border-green-300 justify-center items-center space-y-8 p-6 ml-[30vw] ">
+        class="outerdiv bg-[#131417] text-white mt-4  mx-60 space-y-8 w-[80vw] h-auto flex flex-col justify-center items-center rounded-sm md:w-[70vw] md:ml-40 md:border-2 md:border-white md:p-8 lg:ml-48  xl:ml-60 2xl:ml-80 ">
         <h1 class="font-bold font-mono text-2xl text-green-500">ADD A <span class=" text-yellow-500">NEW QUIZ</span>
         </h1>
         <div class="flex flex-col space-y-2">
           <label class="font-bold font-mono text-md" for="">Quiz Name </label>
-          <input class="h-12 w-96 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer"
+          <input class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
             type="text" v-model="quizName">
         </div>
         <div class="flex flex-col space-y-2"><label class="font-bold font-mono text-md" for="">Category </label>
           <select v-model="category"
-            class="h-12 w-96 px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer">
+            class="h-12 w-80 px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]">
             <option value="Select Access Level" disabled selected>Select domain</option>
             <option value="Aptitude">Aptitude</option>
             <option value="DSA">DSA</option>
@@ -22,7 +22,7 @@
         </div>
         <div class="flex flex-col space-y-2"><label class="font-bold font-mono text-md" for="">Difficulty Level</label>
           <select v-model="difficultyLevel"
-            class="h-12 w-96 px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer">
+            class="h-12 w-80 px-10 text-black rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]">
             <option value="Select Level" disabled selected>Select level</option>
             <option value="Easy">Easy</option>
             <option value="Medium">Medium</option>
