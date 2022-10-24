@@ -1,5 +1,6 @@
 <template>
-  <div class="outermost h-[230vh] bg-[#131417] overflow-x-hidden flex flex-col justify-center items-center md:h-[130vh] lg:h-[100vh] xl:h-[220vh] 2xl:h-[130vh]">
+  <div
+    class="outermost h-[230vh] bg-[#131417] overflow-x-hidden flex flex-col justify-center items-center md:h-[130vh] lg:h-[100vh] xl:h-[220vh] 2xl:h-[130vh]">
     <h1 class="font-sans text-2xl text-green-500 font-bold flex justify-center mt-10 mb-2">Welcome to <span
         class="text-yellow-500 ml-2"> LeadBoard</span></h1>
     <p v-if="flag"> {{ getData() }}</p>

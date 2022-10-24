@@ -359,9 +359,11 @@
         <div class="table h-80 z-0 w-[100vw]  bg-[#131417] p-2  md:w-full">
 
           <div class="heading  text-white mt-6 flex justify-center items-center font-bold text-sm my-4 font-mono">
-            <h1 class="flex justify-center  text-green-500 items-center md:text-2xl xl:text-3xl">RECENTLY ADDED <span class="text-yellow-500 ml-2"> QUIZZES </span> </h1>
+            <h1 class="flex justify-center  text-green-500 items-center md:text-2xl xl:text-3xl">RECENTLY ADDED <span
+                class="text-yellow-500 ml-2"> QUIZZES </span> </h1>
           </div>
-          <div class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16">
+          <div
+            class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -431,9 +433,11 @@
         <div class="table h-80 z-0 w-[100vw]  bg-[#131417] p-2  md:w-full">
 
           <div class="heading  text-white mt-6 flex justify-center items-center font-bold text-sm my-4 font-mono ">
-            <h1 class="flex justify-center  text-green-500 items-center md:text-2xl xl:text-3xl">TRENDING <span class="text-yellow-500 ml-2"> QUIZZES </span></h1>
+            <h1 class="flex justify-center  text-green-500 items-center md:text-2xl xl:text-3xl">TRENDING <span
+                class="text-yellow-500 ml-2"> QUIZZES </span></h1>
           </div>
-          <div class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16">
+          <div
+            class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -506,9 +510,11 @@
         <div class="table h-80 z-0 w-[100vw]  bg-[#131417] p-2  md:w-full">
 
           <div class="heading  text-white mt-6 flex justify-center items-center font-bold text-sm my-4 font-mono">
-            <h1 class="flex justify-center  text-green-500 items-center md:text-2xl xl:text-3xl">RECOMMENDED <span class="text-yellow-500 ml-2"> QUIZZES </span> </h1>
+            <h1 class="flex justify-center  text-green-500 items-center md:text-2xl xl:text-3xl">RECOMMENDED <span
+                class="text-yellow-500 ml-2"> QUIZZES </span> </h1>
           </div>
-          <div class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16e">
+          <div
+            class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16e">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>

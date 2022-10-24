@@ -1,37 +1,31 @@
-import jwt from 'jsonwebtoken'
-import UserModel from '../models/User.js'
- 
-const checkUserAuth = async (req , res , next)=>{
-    let token
-    const { authorization } = req.headers
+import jwt from "jsonwebtoken";
+import UserModel from "../models/User.js";
 
-    if(authorization && authorization.startsWith('Bearer')){
+const checkUserAuth = async (req, res, next) => {
+  let token;
+  const { authorization } = req.headers;
 
-        try {
-            // get token from header
-            token = authorization.split(' ')[1]
-            console.log("token : " , token);
+  if (authorization && authorization.startsWith("Bearer")) {
+    try {
+      // get token from header
+      token = authorization.split(" ")[1];
 
-            // Verify Token
-            const { userID } = jwt.verify(token, process.env.JWT_SECRET_KEY)
-            // console.log(userID);
-            
+      // Verify Token
+      const { userID } = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-            // get user from token 
-            req.user = await UserModel.findById(userID).select('-password')
-            // console.log(req.user);
-            next()
-
-        } catch (error) {
-            res.status(401).send({"status": "failed", "message" :"Unauthorized User"})
-        }
+      // get user from token
+      req.user = await UserModel.findById(userID).select("-password");
+      next();
+    } catch (error) {
+      res.status(401).send({ status: "failed", message: "Unauthorized User" });
     }
+  }
 
-    if(!token){
-        res.status(401).send({"status": "failed", "message" :"Unauthorized User , NO token"})
+  if (!token) {
+    res
+      .status(401)
+      .send({ status: "failed", message: "Unauthorized User , NO token" });
+  }
+};
 
-    }
-}
-
-
-export default checkUserAuth
+export default checkUserAuth;

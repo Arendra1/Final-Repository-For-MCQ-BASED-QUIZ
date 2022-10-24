@@ -356,11 +356,12 @@
     <div class="table h-80 mt-10 z-0 w-[100vw]  bg-[#131417] p-2  md:w-full md:mt-24">
 
       <div class="heading  text-white  mt-6 flex justify-center items-center font-bold text-sm my-4 font-mono">
-        <h1 class="flex justify-center text-green-500 items-center md:text-2xl xl:text-3xl">RECENT QUIZZES ADDED BY <span
-            class="text-yellow-500 ml-2"> {{this.tutorName}}</span></h1>
+        <h1 class="flex justify-center text-green-500 items-center md:text-2xl xl:text-3xl">RECENT QUIZZES ADDED BY
+          <span class="text-yellow-500 ml-2"> {{this.tutorName}}</span></h1>
         <p v-if="flag" class="text-sm text-[#131417]">{{getQuizzes()}}</p>
       </div>
-      <div class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16">
+      <div
+        class="overflow-x-auto  relative shadow-md sm:rounded-lg mx-10 border-2 border-white w-80 md:w-[90vw] xl:ml-16">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>

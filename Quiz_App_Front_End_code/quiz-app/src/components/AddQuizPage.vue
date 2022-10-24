@@ -1,14 +1,17 @@
 <template>
   <div class="outermost h-screen bg-[#131417]">
 
-    <div class="main h-[120vh] bg-[#131417]  pt-32 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:h-[130vh] xl:overflow-scroll" id="profile">
+    <div
+      class="main h-[120vh] bg-[#131417]  pt-32 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:h-[130vh] xl:overflow-scroll"
+      id="profile">
       <div
         class="outerdiv bg-[#131417] text-white mt-4  mx-60 space-y-8 w-[80vw] h-auto flex flex-col justify-center items-center rounded-sm md:w-[70vw] md:ml-40 md:border-2 md:border-white md:p-8 lg:ml-48  xl:ml-60 2xl:ml-80 ">
         <h1 class="font-bold font-mono text-2xl text-green-500">ADD A <span class=" text-yellow-500">NEW QUIZ</span>
         </h1>
         <div class="flex flex-col space-y-2">
           <label class="font-bold font-mono text-md" for="">Quiz Name </label>
-          <input class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
+          <input
+            class="h-12 w-80 px-10 text-black rounded-sm  border-2 border-[#f3f7f7] hover:focus cursor-pointer md:w-[60vw]"
             type="text" v-model="quizName">
         </div>
         <div class="flex flex-col space-y-2"><label class="font-bold font-mono text-md" for="">Category </label>
@@ -63,9 +66,9 @@ export default {
     }
   },
 
-  methods:{
+  methods: {
 
-    async addQuiz(){
+    async addQuiz() {
 
       console.log("Add Quiz function called");
       const quizName = this.quizName;
@@ -81,35 +84,33 @@ export default {
       console.log("Data Recieved from Body : ", doc);
 
 
-      if(quizName && category && difficultyLevel)
-      {
+      if (quizName && category && difficultyLevel) {
         console.log("Inside If just before axiost post");
         console.log(Config.base_url);
-        const response = await axios.post(`${Config.base_url}/id/addId`,doc);
-        console.log( "Response from AddId ",response);
-        if(response.data.status == "success")
-        {
+        const response = await axios.post(`${Config.base_url}/id/addId`, doc);
+        console.log("Response from AddId ", response);
+        if (response.data.status == "success") {
           Vue.$toast.open('Quiz Added Successfully');
-          localStorage.setItem('quizName' ,quizName );
-          this.$router.push({path:'/addQuestion', replace:true})
+          localStorage.setItem('quizName', quizName);
+          this.$router.push({ path: '/addQuestion', replace: true })
 
         }
-        else{
-          
+        else {
+
           Vue.$toast.open('Quiz already Exists');
         }
-        
+
       }
-      else{
+      else {
 
         Vue.$toast.open('ALL fields are required');
       }
 
-      
+
 
 
     }
-    
+
 
   }
 

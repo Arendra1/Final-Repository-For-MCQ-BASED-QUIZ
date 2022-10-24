@@ -1,10 +1,11 @@
 <template>
     <div class="">
-        <div class="main h-screen bg-[#131417] py-10 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:overflow-scroll">
+        <div
+            class="main h-screen bg-[#131417] py-10 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:overflow-scroll">
             <h1 class="mx-80 font-bold text-green-600 text-3xl font-sans mb-4 md:mx-96  lg:ml-[48vw] ">Quiz<span
                     class="text-yellow-500">Mania</span>
             </h1>
-            <div 
+            <div
                 class="outerdiv bg-white mt-4  mx-60 space-y-8 w-[80vw] h-auto flex flex-col justify-center items-center rounded-sm md:w-[70vw] md:ml-40 lg:ml-48 xl:ml-60 2xl:ml-80">
                 <div class="heading font-bold mt-2 text-2xl font-mono md:mt-4">Sign Up</div>
                 <div class="form flex flex-col space-y-8">
@@ -27,10 +28,10 @@
                         <option value="DSA">DSA</option>
                         <option value="Programming">Programming</option>
                     </select>
-                    <input class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] md:w-[60vw]" type="password"
-                        v-model="password" placeholder="Your password">
-                    <input class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] md:w-[60vw]" type="password"
-                        v-model="password_confirmation" placeholder="Confirm password">
+                    <input class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] md:w-[60vw]"
+                        type="password" v-model="password" placeholder="Your password">
+                    <input class="h-12 w-64  px-10 rounded-sm bg-[#f3f7f7] border-2 border-[#f3f7f7] md:w-[60vw]"
+                        type="password" v-model="password_confirmation" placeholder="Confirm password">
                 </div>
                 <div class="button">
                     <button @click="register()"
@@ -63,7 +64,7 @@ export default {
             name: '',
             email: '',
             accessLevel: '',
-            domain:'',
+            domain: '',
             password: '',
             password_confirmation: '',
 
@@ -73,7 +74,7 @@ export default {
     methods: {
 
         checkInput() {
-            if (this.name && this.email &&  this.domain && this.accessLevel && this.password && this.password_confirmation) {
+            if (this.name && this.email && this.domain && this.accessLevel && this.password && this.password_confirmation) {
                 if (this.password === this.password_confirmation) {
                     return true;
                 }
@@ -112,7 +113,7 @@ export default {
                 name: this.name,
                 email: this.email,
                 accessLevel: this.accessLevel,
-                domain : this.domain,
+                domain: this.domain,
                 password: this.password,
                 password_confirmation: this.password_confirmation
 

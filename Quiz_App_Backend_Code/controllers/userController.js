@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import transporter from "../config/emailConfig.js";
 
 class UserController {
+  // METHOD FOR USER REGISTRATION
   static userRegistration = async (req, res) => {
     let score = 0;
     const {
@@ -15,17 +16,8 @@ class UserController {
       password_confirmation,
     } = req.body;
 
-    // what is coming in body
-    console.log(req.body);
-    console.log("name : ", name);
-    console.log("email : ", email);
-    console.log("accessLevel : ", accessLevel);
-    console.log("password : ", password);
-    console.log("password_confirmation : ", password_confirmation);
-
     const user = await UserModel.findOne({ email: email });
     if (user) {
-      console.log("Email already exists");
       res.send({ status: "failed", message: "Email already exists" });
     } else {
       if (
@@ -36,9 +28,7 @@ class UserController {
         domain &&
         password_confirmation
       ) {
-        console.log("four fields are provided");
         if (password === password_confirmation) {
-          console.log("password === password_confirmation");
           try {
             const salt = await bcrypt.genSalt(10);
             const hashPassword = await bcrypt.hash(password, salt);
@@ -51,7 +41,6 @@ class UserController {
               score,
             });
             await doc.save();
-            console.log("successfully created user");
             const saved_user = await UserModel.findOne({ email: email });
             // Generating JWT Token
             const token = jwt.sign(
@@ -69,20 +58,18 @@ class UserController {
             res.send({ status: "failed", message: "unable to register" });
           }
         } else {
-          console.log("Password and confirm password doesn't match");
           res.send({
             status: "failed",
             message: "Password and confirm password doesn't match",
           });
         }
       } else {
-        console.log("All fields are required");
         res.send({ status: "failed", message: "All fields are required" });
       }
     }
   };
 
-  // USER LOGIN
+  // METHOD FOR USER LOGIN
   static userLogin = async (req, res) => {
     try {
       const { email, password } = req.body;
@@ -130,14 +117,13 @@ class UserController {
     }
   };
 
-  // CHANGE USER PASSWORD
+  // METHOD TO CHANGE USER PASSWORD
   static changeUserPassword = async (req, res) => {
     const { password, password_confirmation } = req.body;
     if (password && password_confirmation) {
       if (password === password_confirmation) {
         const salt = await bcrypt.genSalt(10);
         const newHashPassword = await bcrypt.hash(password, salt);
-        // console.log(req.user);
         await UserModel.findByIdAndUpdate(req.user._id, {
           $set: { password: newHashPassword },
         });
@@ -173,8 +159,6 @@ class UserController {
           expiresIn: "15m",
         });
         const link = `http://127.0.0.1:3000/api/user/reset/${user._id}/${token}`;
-        console.log(link);
-        console.log("Just Outside Transporter");
         // send Email
         // let info = await transporter.sendMail({
         //     from : process.env.EMAIL_FROM,
@@ -228,13 +212,10 @@ class UserController {
     }
   };
 
-  // UPDATE USER Score
+  // UPDATE USER SCORE
   static updateUserInfo = async (req, res) => {
     const { id, totalScore } = req.body;
-    // console.log('User ID : ',id);
-    // console.log('totalScore : ',totalScore);
     const user = await UserModel.findById(id);
-    // console.log("user is : " , user);
     try {
       await UserModel.findByIdAndUpdate(user._id, {
         $set: { score: totalScore },
@@ -254,7 +235,7 @@ class UserController {
     console.log(req.body);
 
     try {
-        UserModel.findByIdAndUpdate(
+      UserModel.findByIdAndUpdate(
         id,
         {
           displayName: displayName,
@@ -267,16 +248,14 @@ class UserController {
             console.log(err);
             res.send({ status: "failed", message: "Profile not updated" });
           } else {
-            console.log();
             console.log(doc);
-            res.send({ status: "success", message: "Profile updated Successfully" });
+            res.send({
+              status: "success",
+              message: "Profile updated Successfully",
+            });
           }
         }
       );
-      // console.log("Successfully Updated : ", result);
-
-      // console.log("Not able to update : ",error);
-      // res.send({ status: "failed", message: "User Does not exists" });
     } catch (error) {
       console.log(error);
       res.send({
@@ -295,9 +274,7 @@ class UserController {
         message: "All users are fetched",
         users: result,
       });
-      //   console.log(result);
     } catch (eroor) {
-      //   console.log(error);
       res.send({ status: "failed", message: "Not able to fetch the data" });
     }
   };

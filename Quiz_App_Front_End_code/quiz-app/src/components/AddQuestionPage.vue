@@ -1,7 +1,8 @@
 <template>
     <div class="outermost h-screen bg-black">
 
-        <div class="main h-[120vh] bg-[#131417]  pt-10 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:h-[130vh] xl:overflow-scroll" id="profile">
+        <div class="main h-[120vh] bg-[#131417]  pt-10 px-10 -ml-60 overflow-hidden md:px-10 md:-ml-20  md: md:pt-48 xl:h-[130vh] xl:overflow-scroll"
+            id="profile">
             <div
                 class="outerdiv bg-[#131417] text-white mt-4  mx-60 space-y-8 w-[80vw] h-auto flex flex-col justify-center items-center rounded-sm md:w-[70vw] md:ml-40 md:border-2 md:border-white md:p-8 lg:ml-48  xl:ml-60 2xl:ml-80  ">
                 <h1 class="font-bold font-mono text-2xl text-green-500">ADD NEW<span class=" text-yellow-500">
@@ -133,14 +134,14 @@ export default {
 
                 let _id = result.data.quiz._id;
                 questions.push(doc);
-                console.log("** Questions we are sending in body to addQUestion api call** : ",questions);
+                console.log("** Questions we are sending in body to addQUestion api call** : ", questions);
 
                 let newDoc = {
-                    _id ,
+                    _id,
                     question,
                 }
                 console.log("Just before add question api call");
-                const response  = await axios.post(`${Config.base_url}/quiz/addQuestion` , newDoc);
+                const response = await axios.post(`${Config.base_url}/quiz/addQuestion`, newDoc);
                 console.log(response.data);
                 Vue.$toast.open(response.data.message);
 

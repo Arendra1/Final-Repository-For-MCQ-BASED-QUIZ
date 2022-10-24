@@ -1,8 +1,9 @@
-import idModel from "../models/incremnet.js";
+import idModel from "../models/incremnetID.js";
 import quizModel from "../models/quiz.js";
-import axios from 'axios';
+import axios from "axios";
 
 class idController {
+  // Method To provide the Incremented quizId to newly added quiz.
   static addId = async (req, res) => {
     idModel.findOneAndUpdate(
       { id: "autoval" },
@@ -10,21 +11,13 @@ class idController {
       { new: true },
       async (err, cd) => {
         try {
-          let seqId ;
+          let seqId;
           if (cd == null) {
             const newVal = new idModel({ id: "autoval", count: 1 });
             newVal.save();
             seqId = 1;
-            // res.send({
-            //   status: "succes",
-            //   message: "Added first Id successfully",
-            // });
           } else {
             seqId = cd.count;
-            // res.send({
-            //   status: "succes",
-            //   message: "Added second Id successfully",
-            // });
           }
 
           let quizId = seqId;
@@ -35,45 +28,35 @@ class idController {
             quizName,
             category,
             difficultyLevel,
-            
           });
 
-
-          try{
-            const response = await axios.post('https://mevn-quiz-application-fynd.herokuapp.com/api/quiz/addQuiz', doc);
-            console.log("Below Data Is from counter Table");
-            console.log(response.data);
-            if(response.message == "successfully Added Quiz")
-            {
+          try {
+            const response = await axios.post(
+              "https://mevn-quiz-application-fynd.herokuapp.com/api/quiz/addQuiz",
+              doc
+            );
+            if (response.message == "successfully Added Quiz") {
               res.status(201).send({
                 status: "success",
                 message: "Quiz Added Successfully",
               });
+            } else {
+              res.send({ status: "failed", message: "Quiz Already Exists" });
             }
-            else{
-              res.send({"status": "failed" , "message" : "Quiz Already Exists"})
-            }
-            
-          }catch(err)
-          {
-            console.log(err.name);
-            console.log(err.message);
+          } catch (err) {
             res.status(400).send({
               status: "failed",
               message: "Quiz not Added",
             });
           }
-          
-
         } catch (error) {
-          console.log(error.name);
-          console.log(error.message);
           res.send({ status: "failed", message: "Some error has occured" });
         }
       }
     );
   };
 
+  // Method to get the current count of Quiz
   static getData = async (req, res) => {
     try {
       const result = await idModel.find();
@@ -84,10 +67,10 @@ class idController {
       });
       console.log(result);
     } catch (eroor) {
-      //   console.log(error);
       res.send({ status: "failed", message: "Not able to fetch the data" });
     }
   };
 }
 
+// Exporting The IdController
 export default idController;
